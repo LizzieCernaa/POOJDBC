@@ -7,7 +7,13 @@ import java.sql.DriverManager;
 public class fomAlumno extends JFrame {
     public JPanel panelPrincipal;
     private JButton button1;
-public fomAlumno() {
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField4;
+    private JTextField textField5;
+    private JTextField textField6;
+
+    public fomAlumno() {
     button1.addMouseListener(new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
