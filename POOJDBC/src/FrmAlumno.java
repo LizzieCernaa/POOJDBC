@@ -1,52 +1,75 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FrmAlumno extends JFrame{
     public JPanel panelPrincipal;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextArea textArea1;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JSpinner spinner1;
-    private JSpinner spinner2;
-    private JTextField textField7;
-    private JRadioButton mujerRadioButton;
+    private JTextField txtID;
+    private JTextField txtNombre;
+    private JTextField txtApellido;
+    private JTextField txtNacimiento;
+    private JTextArea txtDireccion;
+    private JTextField txtTelefono;
+    private JTextField txtcorreo;
+    private JSpinner txtEstatura;
+    private JSpinner txtPeso;
+    private JTextField txtNacionalidad;
     private JRadioButton hombreRadioButton;
     private JButton btnInsertar;
     private JButton btnEliminar;
     private JButton btnEliminarTodo;
     private JButton btnModificar;
-    private JLabel txtID;
-    private JLabel txtApellido;
-    private JLabel txtNombre;
-    private JLabel txtNacimiento;
-    private JLabel txtDireccion;
-    private JLabel txtTelefono;
-    private JLabel txtcorreo;
-    private JLabel txtEstatura;
-    private JLabel txtPeso;
-    private JLabel txtNacionalidad;
-    private JLabel txtSexo;
+    private JLabel lbID;
+    private JLabel lbApellido;
+    private JLabel lbNombre;
+    private JLabel lbNacimiento;
+    private JLabel lbDireccion;
+    private JLabel lbTelefono;
+    private JLabel lbcorreo;
+    private JLabel lbEstatura;
+    private JLabel lbPeso;
+    private JLabel lbNacionalidad;
+    private JLabel lbSexo;
     private JTable TblDatos;
 
     public FrmAlumno ()
     {
         DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
-        modelo.addColumn("Edad");
-
-
-        modelo.addRow(new Object[]{"Juan", "Pérez", 30});
-        modelo.addRow(new Object[]{"María", "Gómez", 25});
-        modelo.addRow(new Object[]{"Pedro", "Fernández", 40});
-
+        modelo.addColumn("Fecha de nacimiento");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo");
+        modelo.addColumn("Estatura(cm)");
+        modelo.addColumn("Peso(libra)");
+        modelo.addColumn("Nacionalidad");
+        modelo.addColumn("Sexo");
 
         TblDatos.setModel(modelo);
 
+        btnInsertar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                String id = txtID.getText();
+                String name = txtNombre.getText();
+                String lastName = txtApellido.getText();
+                String birthdate = txtNacimiento.getText();
+                String address = txtDireccion.getText();
+                String phone = txtTelefono.getText();
+                String mail = txtcorreo.getText();
+                String height = txtEstatura.getText();
+                String weight = txtPeso.getText();
+                String nationality = txtNacionalidad.getText();
+                String sex = lbSexo.getText();
+
+
+                modelo.addRow(new Object[]{id, name, lastName, birthdate, address, phone, mail, height,weight,nationality,sex});
+            }
+        });
     }
     private void createUIComponents() {
         // TODO: place custom component creation code here

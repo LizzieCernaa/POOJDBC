@@ -23,7 +23,7 @@
               <text value="Registro de Alumnos"/>
             </properties>
           </component>
-          <component id="9bb55" class="javax.swing.JLabel" binding="txtID">
+          <component id="9bb55" class="javax.swing.JLabel" binding="lbID">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -31,7 +31,7 @@
               <text value="ID"/>
             </properties>
           </component>
-          <component id="d8883" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="d8883" class="javax.swing.JTextField" binding="txtID">
             <constraints>
               <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -39,7 +39,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="d9644" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="d9644" class="javax.swing.JTextField" binding="txtNombre">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -49,7 +49,7 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="45e21" class="javax.swing.JLabel" binding="txtApellido">
+          <component id="45e21" class="javax.swing.JLabel" binding="lbApellido">
             <constraints>
               <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -57,7 +57,7 @@
               <text value="Apellido"/>
             </properties>
           </component>
-          <component id="7e93b" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+          <component id="7e93b" class="javax.swing.JTextField" binding="txtApellido">
             <constraints>
               <grid row="3" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -65,7 +65,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="f690e" class="javax.swing.JLabel" binding="txtNombre">
+          <component id="f690e" class="javax.swing.JLabel" binding="lbNombre">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -73,7 +73,7 @@
               <text value="Nombre"/>
             </properties>
           </component>
-          <component id="827e2" class="javax.swing.JLabel" binding="txtNacimiento">
+          <component id="827e2" class="javax.swing.JLabel" binding="lbNacimiento">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -81,7 +81,7 @@
               <text value="Fecha de Nacimiento"/>
             </properties>
           </component>
-          <component id="efeed" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+          <component id="efeed" class="javax.swing.JTextField" binding="txtNacimiento">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -89,7 +89,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="2a71a" class="javax.swing.JLabel" binding="txtDireccion">
+          <component id="2a71a" class="javax.swing.JLabel" binding="lbDireccion">
             <constraints>
               <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -97,7 +97,7 @@
               <text value="Direccion"/>
             </properties>
           </component>
-          <component id="4a1a7" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+          <component id="4a1a7" class="javax.swing.JTextArea" binding="txtDireccion">
             <constraints>
               <grid row="4" column="3" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
@@ -105,7 +105,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="a82f6" class="javax.swing.JLabel" binding="txtTelefono">
+          <component id="a82f6" class="javax.swing.JLabel" binding="lbTelefono">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -113,7 +113,7 @@
               <text value="Telefono"/>
             </properties>
           </component>
-          <component id="f7296" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+          <component id="f7296" class="javax.swing.JTextField" binding="txtTelefono">
             <constraints>
               <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -121,7 +121,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="8b229" class="javax.swing.JLabel" binding="txtcorreo">
+          <component id="8b229" class="javax.swing.JLabel" binding="lbcorreo">
             <constraints>
               <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -129,7 +129,7 @@
               <text value="Correo"/>
             </properties>
           </component>
-          <component id="a9992" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+          <component id="a9992" class="javax.swing.JTextField" binding="txtcorreo">
             <constraints>
               <grid row="5" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -137,7 +137,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="976a5" class="javax.swing.JLabel" binding="txtEstatura">
+          <component id="976a5" class="javax.swing.JLabel" binding="lbEstatura">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -145,13 +145,13 @@
               <text value="Estatura(cm)"/>
             </properties>
           </component>
-          <component id="a42cf" class="javax.swing.JSpinner" binding="spinner1" default-binding="true">
+          <component id="a42cf" class="javax.swing.JSpinner" binding="txtEstatura">
             <constraints>
               <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="a133c" class="javax.swing.JLabel" binding="txtPeso">
+          <component id="a133c" class="javax.swing.JLabel" binding="lbPeso">
             <constraints>
               <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -159,13 +159,13 @@
               <text value="Peso(libra)"/>
             </properties>
           </component>
-          <component id="1c991" class="javax.swing.JSpinner" binding="spinner2" default-binding="true">
+          <component id="1c991" class="javax.swing.JSpinner" binding="txtPeso">
             <constraints>
               <grid row="6" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="da5c9" class="javax.swing.JLabel" binding="txtNacionalidad">
+          <component id="da5c9" class="javax.swing.JLabel" binding="lbNacionalidad">
             <constraints>
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="29" height="35"/>
@@ -175,7 +175,7 @@
               <text value="Nacionalidad"/>
             </properties>
           </component>
-          <component id="2b55e" class="javax.swing.JTextField" binding="textField7" default-binding="true">
+          <component id="2b55e" class="javax.swing.JTextField" binding="txtNacionalidad">
             <constraints>
               <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="35"/>
@@ -183,7 +183,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="2534c" class="javax.swing.JLabel" binding="txtSexo">
+          <component id="2534c" class="javax.swing.JLabel" binding="lbSexo">
             <constraints>
               <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="29" height="35"/>
@@ -193,7 +193,7 @@
               <text value="Sexo"/>
             </properties>
           </component>
-          <component id="62709" class="javax.swing.JRadioButton" binding="mujerRadioButton" default-binding="true">
+          <component id="62709" class="javax.swing.JRadioButton" default-binding="true">
             <constraints>
               <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="89" height="35"/>
@@ -257,7 +257,9 @@
             <constraints>
               <grid row="11" column="0" row-span="1" col-span="5" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <horizontalScrollBarPolicy value="30"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="eafd2" class="javax.swing.JTable" binding="TblDatos">
