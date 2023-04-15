@@ -2,6 +2,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.regex.Pattern;
 
 public class FrmAlumno extends JFrame{
     public JPanel panelPrincipal;
@@ -15,11 +23,10 @@ public class FrmAlumno extends JFrame{
     private JSpinner txtEstatura;
     private JSpinner txtPeso;
     private JTextField txtNacionalidad;
-    private JRadioButton hombreRadioButton;
+    private JRadioButton rbh;
     private JButton btnInsertar;
     private JButton btnEliminar;
     private JButton btnEliminarTodo;
-    private JButton btnModificar;
     private JLabel lbID;
     private JLabel lbApellido;
     private JLabel lbNombre;
@@ -32,6 +39,7 @@ public class FrmAlumno extends JFrame{
     private JLabel lbNacionalidad;
     private JLabel lbSexo;
     private JTable TblDatos;
+    private JRadioButton rbm;
 
     public FrmAlumno ()
     {
@@ -50,10 +58,18 @@ public class FrmAlumno extends JFrame{
 
         TblDatos.setModel(modelo);
 
+        ButtonGroup group = new ButtonGroup();
+        group.add(rbm);
+        group.add(rbh);
+
+
         btnInsertar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
+                if (!ValidarFormulario()) return;
+
                 String id = txtID.getText();
                 String name = txtNombre.getText();
                 String lastName = txtApellido.getText();
@@ -61,13 +77,14 @@ public class FrmAlumno extends JFrame{
                 String address = txtDireccion.getText();
                 String phone = txtTelefono.getText();
                 String mail = txtcorreo.getText();
-                String height = txtEstatura.getText();
-                String weight = txtPeso.getText();
+                String height = txtEstatura.getValue().toString();
+                String weight = txtPeso.getValue().toString();
                 String nationality = txtNacionalidad.getText();
-                String sex = lbSexo.getText();
+                String sex = rbm.isSelected() ? "Mujer" : "Hombre";
 
 
                 modelo.addRow(new Object[]{id, name, lastName, birthdate, address, phone, mail, height,weight,nationality,sex});
+                LimpiarFormulario();
             }
         });
     }
@@ -77,4 +94,100 @@ public class FrmAlumno extends JFrame{
 
 
     }
-}
+
+    private void LimpiarFormulario ()
+    {
+        String vacio ="";
+        txtID.setText(vacio);
+        txtcorreo.setText(vacio);
+        txtApellido.setText(vacio);
+        txtDireccion.setText(vacio);
+        txtEstatura.setValue(0);
+        txtNacionalidad.setText(vacio);
+        txtNacimiento.setText(vacio);
+        txtPeso.setValue(0);
+        txtTelefono.setText(vacio);
+        rbm.setSelected(true);
+        txtNombre.setText(vacio);
+    }
+
+    private boolean ValidarFormulario()
+    {
+        boolean isValid = true;
+        //validar formato de peso
+        //validar peso coerente
+        //validar formato de estatura
+        //validar estatura coerente
+
+        boolean isFilled =  txtNombre.getText().length() > 0 && txtApellido.getText().length() > 0
+                && txtNacimiento.getText().length() > 0 && txtDireccion.getText().length() > 0
+                && txtTelefono.getText().length() > 0 && txtcorreo.getText().length() > 0
+                && txtEstatura.getValue().toString() != "0" && txtPeso.getValue().toString() != "0"
+                && txtNacionalidad.getText().length() > 0;
+
+        if ( !isFilled )
+        {
+            JOptionPane.showMessageDialog(this,"Debe de llenar todos los campos");
+            isValid = false;
+        }
+
+        //Validando formato fecha
+
+        if (!validarFormatoFecha(txtNacimiento.getText()))
+        {
+            JOptionPane.showMessageDialog(this,"La fecha no es valida. Debe ser dia/mes/año");
+            isValid = false;
+        }
+
+        //validando telefono
+        if (!validarFormatoTelefono(txtTelefono.getText()))
+        {
+            JOptionPane.showMessageDialog(this,"Numero de telefono no valido, Debe de ser 9999-9999");
+            isValid = false;
+        }
+
+        //validando correo
+        if (!validarFormatoCorreo(txtcorreo.getText()))
+        {
+            JOptionPane.showMessageDialog(this,"Correo electronico no valido");
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    public static boolean validarFormatoFecha(String txtFecha) {
+        String formato = "dd/MM/yyyy";
+
+        LocalDate fechaInicio = LocalDate.of(1923, 1, 1);
+        LocalDate fechaFin = LocalDate.now().minusYears(15);
+
+        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+        sdf.setLenient(false);
+        try {
+            Date date = sdf.parse(txtFecha);
+            Instant instant = Instant.ofEpochMilli(date.getTime());
+            LocalDate fecha = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+
+            return (fecha.isEqual(fechaInicio) || fecha.isAfter(fechaInicio))
+                    && (fecha.isEqual(fechaFin) || fecha.isBefore(fechaFin));
+
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+        public static boolean validarFormatoTelefono(String telefono) {
+            String formatoTelefono = "^\\d{4}-\\d{4}$"; // formato esperado: cuatro dígitos numéricos, un guion, cuatro dígitos numéricos
+            Pattern patron = Pattern.compile(formatoTelefono);
+            return patron.matcher(telefono).matches();
+        }
+
+
+        public static boolean validarFormatoCorreo(String correo) {
+            String formatoCorreo = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"; // formato esperado: [cadena de caracteres alfanuméricos y guiones bajos]@[cadena de caracteres alfanuméricos y guiones bajos].[cadena de caracteres alfanuméricos]
+            Pattern patron = Pattern.compile(formatoCorreo);
+            return patron.matcher(correo).matches();
+        }
+    }
+
+

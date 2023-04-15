@@ -193,17 +193,18 @@
               <text value="Sexo"/>
             </properties>
           </component>
-          <component id="62709" class="javax.swing.JRadioButton" default-binding="true">
+          <component id="62709" class="javax.swing.JRadioButton" binding="rbm">
             <constraints>
               <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="89" height="35"/>
               </grid>
             </constraints>
             <properties>
+              <selected value="true"/>
               <text value="Mujer"/>
             </properties>
           </component>
-          <component id="ebb7b" class="javax.swing.JRadioButton" binding="hombreRadioButton" default-binding="true">
+          <component id="ebb7b" class="javax.swing.JRadioButton" binding="rbh">
             <constraints>
               <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="89" height="35"/>
@@ -220,7 +221,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="Insertar"/>
+              <text value="Guardar"/>
             </properties>
           </component>
           <component id="4fbd" class="javax.swing.JButton" binding="btnEliminar">
@@ -241,16 +242,6 @@
             </constraints>
             <properties>
               <text value="Eliminar Todo"/>
-            </properties>
-          </component>
-          <component id="d521b" class="javax.swing.JButton" binding="btnModificar">
-            <constraints>
-              <grid row="9" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="78" height="32"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="Modificar"/>
             </properties>
           </component>
           <scrollpane id="59d20">
