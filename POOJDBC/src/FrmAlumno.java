@@ -1,7 +1,8 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
-public class FrmAlumno {
-    private JPanel panel1;
+public class FrmAlumno extends JFrame{
+    public JPanel panelPrincipal;
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -18,7 +19,6 @@ public class FrmAlumno {
     private JButton btnEliminar;
     private JButton btnEliminarTodo;
     private JButton btnModificar;
-    private JTable table1;
     private JLabel txtID;
     private JLabel txtApellido;
     private JLabel txtNombre;
@@ -30,8 +30,28 @@ public class FrmAlumno {
     private JLabel txtPeso;
     private JLabel txtNacionalidad;
     private JLabel txtSexo;
+    private JTable TblDatos;
 
+    public FrmAlumno ()
+    {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Edad");
+
+
+        modelo.addRow(new Object[]{"Juan", "Pérez", 30});
+        modelo.addRow(new Object[]{"María", "Gómez", 25});
+        modelo.addRow(new Object[]{"Pedro", "Fernández", 40});
+
+
+        TblDatos.setModel(modelo);
+
+    }
     private void createUIComponents() {
         // TODO: place custom component creation code here
+
+
+
     }
 }
