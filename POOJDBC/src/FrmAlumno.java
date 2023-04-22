@@ -70,6 +70,7 @@ public class FrmAlumno extends JFrame{
 
                 if (!ValidarFormulario()) return;
 
+
                 String id = txtID.getText();
                 String name = txtNombre.getText();
                 String lastName = txtApellido.getText();
@@ -81,6 +82,23 @@ public class FrmAlumno extends JFrame{
                 String weight = txtPeso.getValue().toString();
                 String nationality = txtNacionalidad.getText();
                 String sex = rbm.isSelected() ? "Mujer" : "Hombre";
+
+
+                Alumno alumno = new Alumno();
+                alumno.setId(Long.parseLong(id));
+                alumno.setNombre(name);
+                alumno.setApellido(lastName);
+                alumno.setFechaNacimiento(birthdate);
+                alumno.setDireccion(address);
+                alumno.setTelefono(phone);
+                alumno.setCorreo(mail);
+                alumno.setNacionalidad(nationality);
+                alumno.setSexo(sex);
+               /* alumno.setEstatura(height);
+                alumno.setPeso(weight);*/
+
+                AlumnoRepository respository = new AlumnoRepository();
+                respository.AgregarAlumno(alumno);
 
 
                 modelo.addRow(new Object[]{id, name, lastName, birthdate, address, phone, mail, height,weight,nationality,sex});

@@ -8,7 +8,8 @@ public class Alumno {
     private String correo;
     private double estatura;
     private double peso;
-    private char sexo;
+    private String sexo;
+    private String nacionalidad;
 
     public long getId() {
         return id;
@@ -82,11 +83,19 @@ public class Alumno {
         this.peso = peso;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
     }
 }
