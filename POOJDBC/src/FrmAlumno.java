@@ -94,8 +94,10 @@ public class FrmAlumno extends JFrame{
                 alumno.setCorreo(mail);
                 alumno.setNacionalidad(nationality);
                 alumno.setSexo(sex);
-               /* alumno.setEstatura(height);
-                alumno.setPeso(weight);*/
+                alumno.setEstatura(Double.parseDouble(height));
+                alumno.setPeso(Double.parseDouble(weight));
+
+
 
                 AlumnoRepository respository = new AlumnoRepository();
                 respository.AgregarAlumno(alumno);
