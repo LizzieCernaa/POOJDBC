@@ -114,10 +114,7 @@ public class FrmAlumno extends JFrame{
     private boolean ValidarFormulario()
     {
         boolean isValid = true;
-        //validar formato de peso
-        //validar peso coerente
-        //validar formato de estatura
-        //validar estatura coerente
+
 
         boolean isFilled =  txtNombre.getText().length() > 0 && txtApellido.getText().length() > 0
                 && txtNacimiento.getText().length() > 0 && txtDireccion.getText().length() > 0
@@ -150,6 +147,20 @@ public class FrmAlumno extends JFrame{
         if (!validarFormatoCorreo(txtcorreo.getText()))
         {
             JOptionPane.showMessageDialog(this,"Correo electronico no valido");
+            isValid = false;
+        }
+
+        //Validando Peso
+        if (!validarPeso(txtPeso.getValue().toString()))
+        {
+            JOptionPane.showMessageDialog(this,"Peso no valido");
+            isValid = false;
+        }
+
+        //Validando Estatura
+        if (!validarEstatura(txtEstatura.getValue().toString()))
+        {
+            JOptionPane.showMessageDialog(this,"Estatura no valida");
             isValid = false;
         }
 
@@ -188,6 +199,29 @@ public class FrmAlumno extends JFrame{
             Pattern patron = Pattern.compile(formatoCorreo);
             return patron.matcher(correo).matches();
         }
+
+
+    public boolean validarEstatura(String estatura) {
+        try {
+            double valorEstatura = Double.parseDouble(estatura); // Verificar si el valor de la estatura es un número válido
+            // Verificar que el valor de la estatura esté dentro de un rango razonable basado en el contexto de la aplicación o sistema
+            return (valorEstatura >= 120 && valorEstatura <= 220);
+
+        } catch (NumberFormatException e) {
+            return false; // Si el valor de la estatura no es un número válido, devuelve false
+        }
     }
+
+    public boolean validarPeso(String peso) {
+        try {
+            double validarPeso = Double.parseDouble(peso); // Verificar si el valor de la estatura es un número válido
+            // Verificar que el valor de la estatura esté dentro de un rango razonable basado en el contexto de la aplicación o sistema
+            return (validarPeso >= 50 && validarPeso <= 300);
+
+        } catch (NumberFormatException e) {
+            return false; // Si el valor de la estatura no es un número válido, devuelve false
+        }
+    }
+}
 
 
