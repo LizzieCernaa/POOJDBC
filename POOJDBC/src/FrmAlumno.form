@@ -46,7 +46,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value=""/>
+              <text value="Alicia"/>
             </properties>
           </component>
           <component id="45e21" class="javax.swing.JLabel" binding="lbApellido">
@@ -63,7 +63,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="Ovando"/>
+            </properties>
           </component>
           <component id="f690e" class="javax.swing.JLabel" binding="lbNombre">
             <constraints>
@@ -87,7 +89,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="2003-01-30"/>
+            </properties>
           </component>
           <component id="2a71a" class="javax.swing.JLabel" binding="lbDireccion">
             <constraints>
@@ -103,7 +107,9 @@
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="Pais de las maravillas"/>
+            </properties>
           </component>
           <component id="a82f6" class="javax.swing.JLabel" binding="lbTelefono">
             <constraints>
@@ -119,7 +125,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="7802-7206"/>
+            </properties>
           </component>
           <component id="8b229" class="javax.swing.JLabel" binding="lbcorreo">
             <constraints>
@@ -135,7 +143,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="cernaa689@gmail.com"/>
+            </properties>
           </component>
           <component id="976a5" class="javax.swing.JLabel" binding="lbEstatura">
             <constraints>
@@ -181,7 +191,9 @@
                 <preferred-size width="150" height="35"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="Salvadorenia"/>
+            </properties>
           </component>
           <component id="2534c" class="javax.swing.JLabel" binding="lbSexo">
             <constraints>

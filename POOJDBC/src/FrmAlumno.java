@@ -81,7 +81,7 @@ public class FrmAlumno extends JFrame{
                 String height = txtEstatura.getValue().toString();
                 String weight = txtPeso.getValue().toString();
                 String nationality = txtNacionalidad.getText();
-                String sex = rbm.isSelected() ? "Mujer" : "Hombre";
+                String sex = rbm.isSelected() ? "M" : "H";
 
 
                 Alumno alumno = new Alumno();
@@ -100,11 +100,16 @@ public class FrmAlumno extends JFrame{
 
 
                 AlumnoRepository respository = new AlumnoRepository();
-                respository.AgregarAlumno(alumno);
+                if (respository.AgregarAlumno(alumno))
+                {
+                    modelo.addRow(new Object[]{id, name, lastName, birthdate, address, phone, mail, height,weight,nationality,sex});
+                    LimpiarFormulario();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Error agregando alumno "+ respository.getError());
+                }
 
-
-                modelo.addRow(new Object[]{id, name, lastName, birthdate, address, phone, mail, height,weight,nationality,sex});
-                LimpiarFormulario();
             }
         });
     }
@@ -188,7 +193,7 @@ public class FrmAlumno extends JFrame{
     }
 
     public static boolean validarFormatoFecha(String txtFecha) {
-        String formato = "dd/MM/yyyy";
+        String formato = "yyyy-MM-dd";
 
         LocalDate fechaInicio = LocalDate.of(1923, 1, 1);
         LocalDate fechaFin = LocalDate.now().minusYears(15);

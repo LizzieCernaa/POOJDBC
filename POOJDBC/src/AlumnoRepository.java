@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
@@ -9,7 +10,10 @@ public class AlumnoRepository {
     private Connection conn;
 
     private String error;
-
+    public AlumnoRepository()
+    {
+        error = "";
+    }
     public boolean Conectar()
     {
         try {
@@ -39,10 +43,10 @@ public class AlumnoRepository {
         try {
             this.Conectar();
 
-            String sql = "INSERT INTO alumnos ( fecha_nacimiento, nombre, apellido, telefono, direccion, estatura, peso, correo, nacionalidad, sexo) " +
+            String sql = "INSERT INTO alumno ( fecha_nacimiento, nombre, apellido, telefono, direccion, estatura, peso, correo, nacionalidad, sexo) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, alumno.getFechaNacimiento());
+            statement.setDate(1, Date.valueOf(alumno.getFechaNacimiento()));
             statement.setString(2, alumno.getNombre());
             statement.setString(3, alumno.getApellido());
             statement.setString(4, alumno.getTelefono());
