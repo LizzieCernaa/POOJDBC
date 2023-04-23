@@ -76,10 +76,10 @@ public class AlumnoRepository {
     {
         try {
             this.Conectar();
-            String sql = "UPDATE alumnos SET fecha_nacimiento =?, nombre=?, apellido =?, telefono =?, direccion =?," +
+            String sql = "UPDATE alumno SET fecha_nacimiento =?, nombre=?, apellido =?, telefono =?, direccion =?," +
                         " estatura =?, peso =?, correo =?, nacionalidad =?, sexo =? WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, alumno.getFechaNacimiento());
+            statement.setDate(1, Date.valueOf(alumno.getFechaNacimiento()));
             statement.setString(2, alumno.getNombre());
             statement.setString(3, alumno.getApellido());
             statement.setString(4, alumno.getTelefono());
@@ -188,6 +188,40 @@ public class AlumnoRepository {
             }
             return alumnos;
         }
+
+    public Alumno ObtenerAlumno(long id)
+    {
+        this.Conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Alumno alumno = null;
+        try {
+            String query = "SELECT  id, nombre, apellido, telefono, direccion, estatura, peso, correo, nacionalidad, sexo, fecha_nacimiento" +
+                    " FROM alumno WHERE id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+            rs.next();
+                alumno = new Alumno();
+                alumno.setId(rs.getInt("id"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setTelefono(rs.getString("telefono"));
+                alumno.setDireccion(rs.getString("direccion"));
+                alumno.setEstatura(rs.getDouble("estatura"));
+                alumno.setPeso(rs.getDouble("peso"));
+                alumno.setCorreo(rs.getString("correo"));
+                alumno.setNacionalidad(rs.getString("nacionalidad"));
+                alumno.setSexo(rs.getString("sexo"));
+                alumno.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+
+
+            this.Desconectar();
+        } catch (SQLException e) {
+            error = e.getMessage();
+        }
+        return alumno;
+    }
 
     public String getError() {
         return error;

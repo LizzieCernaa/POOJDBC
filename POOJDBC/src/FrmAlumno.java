@@ -1,8 +1,8 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.security.PublicKey;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -43,6 +43,8 @@ public class FrmAlumno extends JFrame{
     private JLabel lbSexo;
     private JTable TblDatos;
     private JRadioButton rbm;
+    private JButton btnEditar;
+    private JButton btnNuevo;
 
     public FrmAlumno ()
     {
@@ -86,14 +88,105 @@ public class FrmAlumno extends JFrame{
                 alumno.setPeso(Double.parseDouble(weight));
 
                 AlumnoRepository respository = new AlumnoRepository();
-                if (respository.AgregarAlumno(alumno))
+
+                boolean resultado = (alumno.getId() == 0)? respository.AgregarAlumno(alumno): respository.ActualizarAlumno(alumno);
+
+                if (resultado)
                 {
                    CargarAlumnos();
-                    LimpiarFormulario();
+                   LimpiarFormulario();
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null,"Error agregando alumno "+ respository.getError());
+                    JOptionPane.showMessageDialog(null,"Error al guardar cambios "+ respository.getError());
+                }
+
+            }
+        });
+        btnEliminarTodo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int respuesta = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea Elimar a todos los alumnos?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    // El usuario seleccionó "Sí".
+                    AlumnoRepository repository = new AlumnoRepository();
+                    if (repository.EliminarTodosAlumnos()){
+                        CargarAlumnos();
+                        JOptionPane.showConfirmDialog(null, "Alumnos Eliminados");
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "Error al intentar eliminar a los alumnos" + repository.getError());
+                    }
+                }
+            }
+        });
+        TblDatos.addMouseListener(new MouseAdapter() {
+        });
+        btnEditar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+
+                int selectedRow = TblDatos.getSelectedRow(); // Obtiene el índice de la fila seleccionada
+
+                if (selectedRow == -1) { // Se asegura de que haya una fila seleccionada
+                   JOptionPane.showMessageDialog(null,"Debe de seleccionar un Alumno");
+                   return;
+                }
+                TableModel model = TblDatos.getModel();
+                int id = Integer.parseInt(model.getValueAt(selectedRow,0).toString());
+
+                AlumnoRepository repository = new AlumnoRepository();
+                Alumno alumno = new Alumno();
+                alumno = repository.ObtenerAlumno(id);
+                txtID.setText(Long.toString(alumno.getId()));
+                txtcorreo.setText(alumno.getCorreo());
+                txtApellido.setText(alumno.getApellido());
+                txtDireccion.setText(alumno.getDireccion());
+                txtEstatura.setValue(alumno.getEstatura());
+                txtNacionalidad.setText(alumno.getNacionalidad());
+                txtNacimiento.setText(alumno.getFechaNacimiento());
+                txtPeso.setValue(alumno.getPeso());
+                txtTelefono.setText(alumno.getTelefono());
+                txtNombre.setText(alumno.getNombre());
+                if (alumno.getSexo().equals("M")){
+                    rbm.setSelected(true);
+                }
+                else {
+                    rbh.setSelected(true);
+                }
+            }
+        });
+        btnNuevo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                LimpiarFormulario();
+            }
+        });
+        btnEliminar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int selectedRow = TblDatos.getSelectedRow(); // Obtiene el índice de la fila seleccionada
+
+                if (selectedRow == -1) { // Se asegura de que haya una fila seleccionada
+                    JOptionPane.showMessageDialog(null,"Debe de seleccionar un Alumno");
+                    return;
+                }
+                TableModel model = TblDatos.getModel();
+                Long id = Long.parseLong(model.getValueAt(selectedRow,0).toString());
+                int respuesta = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar al alumno seleccionado?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    AlumnoRepository repository = new AlumnoRepository();
+                    if (repository.EliminarAlumno(id)){
+                        CargarAlumnos();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Error al intentar eliminar al alumno " + repository.getError());
+                    }
+
+
                 }
 
             }
@@ -131,7 +224,7 @@ public class FrmAlumno extends JFrame{
     private void LimpiarFormulario ()
     {
         String vacio ="";
-        txtID.setText(vacio);
+        txtID.setText("0");
         txtcorreo.setText(vacio);
         txtApellido.setText(vacio);
         txtDireccion.setText(vacio);
@@ -256,5 +349,7 @@ public class FrmAlumno extends JFrame{
         }
     }
 }
+
+
 
 
