@@ -1,7 +1,6 @@
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlumnoRepository {
     private String url = "jdbc:postgresql://localhost:5432/poo";
@@ -157,6 +156,38 @@ public class AlumnoRepository {
             return false;
         }
     }
+
+    public List<Alumno> ListaAlumnos()
+        {
+            this.Conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            List<Alumno> alumnos = new ArrayList<>();
+            try {
+                String query = "SELECT  id, nombre, apellido, telefono, direccion, estatura, peso, correo, nacionalidad, sexo, fecha_nacimiento FROM alumno";
+                stmt = conn.prepareStatement(query);
+                rs = stmt.executeQuery();
+                while (rs.next()) {
+                    Alumno alumno = new Alumno();
+                    alumno.setId(rs.getInt("id"));
+                    alumno.setNombre(rs.getString("nombre"));
+                    alumno.setApellido(rs.getString("apellido"));
+                    alumno.setTelefono(rs.getString("telefono"));
+                    alumno.setDireccion(rs.getString("direccion"));
+                    alumno.setEstatura(rs.getDouble("estatura"));
+                    alumno.setPeso(rs.getDouble("peso"));
+                    alumno.setCorreo(rs.getString("correo"));
+                    alumno.setNacionalidad(rs.getString("nacionalidad"));
+                    alumno.setSexo(rs.getString("sexo"));
+                    alumno.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+                    alumnos.add(alumno);
+                }
+                this.Desconectar();
+            } catch (SQLException e) {
+                error = e.getMessage();
+            }
+            return alumnos;
+        }
 
     public String getError() {
         return error;

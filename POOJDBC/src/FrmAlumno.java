@@ -2,13 +2,16 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.security.PublicKey;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class FrmAlumno extends JFrame{
@@ -43,25 +46,10 @@ public class FrmAlumno extends JFrame{
 
     public FrmAlumno ()
     {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellido");
-        modelo.addColumn("Fecha de nacimiento");
-        modelo.addColumn("Direccion");
-        modelo.addColumn("Telefono");
-        modelo.addColumn("Correo");
-        modelo.addColumn("Estatura(cm)");
-        modelo.addColumn("Peso(libra)");
-        modelo.addColumn("Nacionalidad");
-        modelo.addColumn("Sexo");
-
-        TblDatos.setModel(modelo);
-
         ButtonGroup group = new ButtonGroup();
         group.add(rbm);
         group.add(rbh);
-
+        CargarAlumnos();
 
         btnInsertar.addMouseListener(new MouseAdapter() {
             @Override
@@ -97,12 +85,10 @@ public class FrmAlumno extends JFrame{
                 alumno.setEstatura(Double.parseDouble(height));
                 alumno.setPeso(Double.parseDouble(weight));
 
-
-
                 AlumnoRepository respository = new AlumnoRepository();
                 if (respository.AgregarAlumno(alumno))
                 {
-                    modelo.addRow(new Object[]{id, name, lastName, birthdate, address, phone, mail, height,weight,nationality,sex});
+                   CargarAlumnos();
                     LimpiarFormulario();
                 }
                 else
@@ -115,9 +101,31 @@ public class FrmAlumno extends JFrame{
     }
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
 
+    private void CargarAlumnos(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Fecha de nacimiento");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo");
+        modelo.addColumn("Estatura(cm)");
+        modelo.addColumn("Peso(libra)");
+        modelo.addColumn("Nacionalidad");
+        modelo.addColumn("Sexo");
 
+        TblDatos.setModel(modelo);
+        List<Alumno> alumnos = new ArrayList<>();
+        AlumnoRepository respository = new AlumnoRepository();
+        alumnos = respository.ListaAlumnos();
 
+        for (Alumno alumno : alumnos) {
+            modelo.addRow(new Object[]{alumno.getId(), alumno.getNombre(), alumno.getApellido(), alumno.getFechaNacimiento(), alumno.getDireccion(), alumno.getTelefono(),
+                    alumno.getCorreo(), alumno.getEstatura(), alumno.getPeso(), alumno.getNacionalidad(), alumno.getSexo()});
+        }
     }
 
     private void LimpiarFormulario ()
